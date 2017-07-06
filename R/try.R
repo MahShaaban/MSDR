@@ -26,12 +26,10 @@ ggplot(dd, aes(date = date,
                   xmax = as.Date('2005-12-05'),
                   y = country,
                   colour = deaths,
+                  fill = deaths,
                   size = scale,
                   location = location)) +
   geom_timeline() +
   geom_timeline_label() +
-  theme_classic() +
-  labs(y = '', x = 'DATE') +
-  theme(axis.line.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.text.y = element_blank())
+  theme_timeline +
+  labs(x = 'DATE')
