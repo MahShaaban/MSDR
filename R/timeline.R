@@ -30,11 +30,10 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline",
                                  required_aes = c("date", "xmin", "xmax", "y", "colour", "size"),
                                  default_aes = ggplot2::aes(shape = 19, stroke = .5, alpha = .7),
                                  draw_key = function(data, params, size) {
-                                   pointsGrob(0.5, 0.5,
-                                              pch = data$shape,
-                                              gp = gpar(fontsize = data$size * .pt + data$stroke * .stroke / 2)
+                                   grid::pointsGrob(0.5, 0.5,
+                                                    pch = data$shape,
+                                                    gp = grid::gpar(fontsize = data$size * .pt + data$stroke * .stroke / 2)
                                    )
-
                                  },
                                  draw_panel = function(data, panel_scales, coord) {
                                    # prepare data
@@ -44,8 +43,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline",
                                      mutate(x = as.numeric(date))
 
                                    coords <- coord$transform(data, panel_scales)
-                                   print(coords)
-                                   grobTree(
+                                   grid::grobTree(
                                      grid::pointsGrob(
                                        coords$x, coords$y,
                                        pch = coords$shape,
@@ -58,7 +56,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline",
                                        x1 = unit(coords$xmax, 'npc'),
                                        y0 = unit(coords$y, 'npc'),
                                        y1 = unit(coords$y, 'npc'),
-                                       gp = gpar(col = 'gray')
+                                       gp = grid::gpar(col = 'gray')
                                      )
                                    )
                                  }
@@ -115,7 +113,7 @@ GeomTimelineLabel <- ggplot2::ggproto("GeomTimeline",
                                                                        y0 = unit(coords$y, 'npc'),
                                                                        y1 = unit(coords$y + .15, 'npc'),
                                                                        gp = grid::gpar(col = 'gray'))
-                                        grobTree(txt, segments)
+                                        grid::grobTree(txt, segments)
                                       }
 )
 
