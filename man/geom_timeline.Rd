@@ -9,8 +9,27 @@ geom_timeline(mapping = NULL, data = NULL, stat = "identity",
   inherit.aes = TRUE, ...)
 }
 \arguments{
-\item{...}{}
+\item{mapping}{Set of aethetics created by aes.}
+
+\item{data}{A data.fram such as that obtained from NOAA}
+
+\item{stat}{A string of statistical transfromation.}
+
+\item{position}{Position adjustment.}
+
+\item{na.rm}{A logical for dealing with missing values.}
+
+\item{show.legend}{A logical for showing legend or not.}
+
+\item{inherit.aes}{A logical of whether or not override default aesthetics.}
+
+\item{...}{Other arguments passed to layer}
 }
 \description{
 Timeline earthquak graph
+}
+\details{
+A timeline plot is a representation of individual earthquaks ordered by their
+ corresponding dates as points; the color of the point represent the number of deaths
+ that resulted from the event and the size represents the magnitude of the event
 }

@@ -9,11 +9,25 @@ geom_timeline_label(mapping = NULL, data = NULL, stat = "identity",
   inherit.aes = TRUE, ...)
 }
 \arguments{
-\item{...}{}
-}
-\value{
-Labels to use with geom_timeline
+\item{mapping}{Set of aethetics created by aes.}
+
+\item{data}{A data.fram such as that obtained from NOAA}
+
+\item{stat}{A string of statistical transfromation.}
+
+\item{position}{Position adjustment.}
+
+\item{na.rm}{A logical for dealing with missing values.}
+
+\item{show.legend}{A logical for showing legend or not.}
+
+\item{inherit.aes}{A logical of whether or not override default aesthetics.}
+
+\item{...}{Other arguments passed to layer.}
 }
 \description{
 Timeline label
+}
+\details{
+Adds labels for the locations of individual earthquaks. Used with geom_timeline.
 }

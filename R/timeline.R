@@ -1,27 +1,30 @@
 #' Timeline earthquak graph
 #'
-#' @param mapping
-#' @param data
-#' @param stat
-#' @param position
-#' @param na.rm
-#' @param show.legend
-#' @param inherit.aes
-#' @param ...
+#' @param mapping Set of aethetics created by aes.
+#' @param data A data.fram such as that obtained from NOAA
+#' @param stat A string of statistical transfromation.
+#' @param position Position adjustment.
+#' @param na.rm A logical for dealing with missing values.
+#' @param show.legend A logical for showing legend or not.
+#' @param inherit.aes A logical of whether or not override default aesthetics.
+#' @param ... Other arguments passed to layer
 #'
-#' @return
+#' @details A timeline plot is a representation of individual earthquaks ordered by their
+#'  corresponding dates as points; the color of the point represent the number of deaths
+#'  that resulted from the event and the size represents the magnitude of the event
 #' @export
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
                           position = "identity", na.rm = FALSE, show.legend = NA,
                           inherit.aes = TRUE, ...) {
-  layer(
+  ggplot2::layer(
     geom = GeomTimeline, mapping = mapping,  data = data, stat = stat,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
 
-#' @rdname ggplot2-ggproto
+#' Geom object for drawing timeline
+#'
 #' @format NULL
 #' @usage NULL
 #' @export
@@ -39,8 +42,8 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline",
                                    # prepare data
                                    ## subset by xmin and xmax
                                    data <- data %>%
-                                     filter(date >= xmin, date <= xmax) %>%
-                                     mutate(x = as.numeric(date))
+                                     dplyr::filter(date >= xmin, date <= xmax) %>%
+                                     dplyr::mutate(x = as.numeric(date))
 
                                    coords <- coord$transform(data, panel_scales)
                                    grid::grobTree(
@@ -64,22 +67,22 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline",
 
 #' Timeline label
 #'
-#' @param mapping
-#' @param data
-#' @param stat
-#' @param position
-#' @param na.rm
-#' @param show.legend
-#' @param inherit.aes
-#' @param ...
+#' @param mapping Set of aethetics created by aes.
+#' @param data A data.fram such as that obtained from NOAA
+#' @param stat A string of statistical transfromation.
+#' @param position Position adjustment.
+#' @param na.rm A logical for dealing with missing values.
+#' @param show.legend A logical for showing legend or not.
+#' @param inherit.aes A logical of whether or not override default aesthetics.
+#' @param ... Other arguments passed to layer.
 #'
-#' @return Labels to use with geom_timeline
+#' @details Adds labels for the locations of individual earthquaks. Used with geom_timeline.
 #' @export
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
                                 position = "identity", na.rm = FALSE,
                                 show.legend = FALSE,
                                 inherit.aes = TRUE, ...) {
-  layer(
+  ggplot2::layer(
     geom = GeomTimelineLabel, mapping = mapping,  data = data, stat = stat,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
@@ -87,7 +90,8 @@ geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
 }
 
 
-#' @rdname ggplot2-ggproto
+#' Geom object for drawing timeline labels
+#'
 #' @format NULL
 #' @usage NULL
 #' @export
@@ -98,8 +102,8 @@ GeomTimelineLabel <- ggplot2::ggproto("GeomTimeline",
                                         # prepare data
                                         ## subset by xmin and xmax
                                         data <- data %>%
-                                          filter(date >= xmin, date <= xmax) %>%
-                                          mutate(x = as.numeric(date))
+                                          dplyr::filter(date >= xmin, date <= xmax) %>%
+                                          dplyr::mutate(x = as.numeric(date))
                                         coords <- coord$transform(data, panel_params)
 
                                         txt <- grid::textGrob(label = coords$location,
