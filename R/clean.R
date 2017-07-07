@@ -6,8 +6,6 @@ eq_clean_date <- function(df) {
 
 eq_clean_location <- function(df) {
   df %>%
-    dplyr::mutate(LOCATION_NAME = stringr::tr_split(LOCATION_NAME,
-                                             ': ',
-                                             simplify = TRUE)[,2],
-           LOCATION_NAME = stringr::str_to_title(LOCATION_NAME))
+    dplyr::mutate(LOCATION = stringr::str_split(LOCATION_NAME, ': ', simplify = TRUE)[,2],
+           LOCATION = stringr::str_to_title(LOCATION_NAME))
 }

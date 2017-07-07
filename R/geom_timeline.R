@@ -1,48 +1,41 @@
-draw_panel_function = function(data, panel_params, coord) {
-  # subset data by xmin and xmax
-  data <- data %>%
-    filter(date >= xmin, date <= xmax) %>%
-    mutate(x = as.numeric(date))
-  coords <- coord$transform(data, panel_params)
-
-  # points
-  points <- grid::pointsGrob(
-    coords$x, coords$y,
-    pch = coords$shape,
-    gp = grid::gpar(col = alpha(coords$colour, coords$alpha),
-                    fill = alpha(coords$fill, coords$alpha),
-                    fontsize = coords$size * .pt + coords$stroke * .stroke / 2)
-  )
-
-  # segments
-  segments <- grid::segmentsGrob(
-    x0 = unit(coords$xmin, 'npc'),
-    x1 = unit(coords$xmax, 'npc'),
-    y0 = unit(coords$y, 'npc'),
-    y1 = unit(coords$y, 'npc'),
-    grid::gpar(col = 'gray')
-  )
-  grobTree(points, segments)
-}
-
-
 GeomTimeline <- ggproto("GeomTimeline",
                         Geom,
-                        required_aes = c("date", "xmin", "xmax", "y"),
-                        non_missing_aes = c("size", "shape", "colour"),
-                        default_aes = aes(shape = 19, alpha = .7, stroke = 0.5, fill = NA),
-                        draw_panel = draw_panel_function,
-                        draw_key = draw_key_point
-                        )
+                        required_aes = c("date", "xmin", "xmax", "y", "colour", "size"),
+                        default_aes = aes(shape = 19, fill = NA, stroke = .5, alpha = .2),
+                        draw_key = draw_key_polygon,
+                        draw_panel = function(data, panel_scales, coord) {
+                          # prepare data
+                          ## subset by xmin and xmax
+                          data <- data %>%
+                            filter(date >= xmin, date <= xmax) %>%
+                            mutate(x = as.numeric(date))
+
+                          coords <- coord$transform(data, panel_scales)
+                          print(coords)
+                          grobTree(
+                            grid::pointsGrob(
+                              coords$x, coords$y,
+                              pch = coords$shape,
+                              gp = grid::gpar(col = alpha(coords$colour, coords$alpha),
+                                              fill = alpha(coords$fill, coords$alpha))
+                            ),
+                            grid::segmentsGrob(
+                              x0 = unit(coords$xmin, 'npc'),
+                              x1 = unit(coords$xmax, 'npc'),
+                              y0 = unit(coords$y, 'npc'),
+                              y1 = unit(coords$y, 'npc'),
+                              gp = gpar(col = 'gray')
+                            )
+                          )
+                        }
+)
 
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
-                              position = "identity", na.rm = FALSE,
-                              show.legend = TRUE,
-                              inherit.aes = TRUE, ...) {
+                          position = "identity", na.rm = FALSE, show.legend = NA,
+                          inherit.aes = TRUE, ...) {
   layer(
     geom = GeomTimeline, mapping = mapping,  data = data, stat = stat,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
-

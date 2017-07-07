@@ -2,6 +2,8 @@ GeomTimelineLabel <- ggproto("GeomTimeline",
                         Geom,
                         required_aes = c("date", "xmin", "xmax", "location"),
                         draw_panel = function(data, panel_params, coord) {
+                          # prepare data
+                          ## subset by xmin and xmax
                           data <- data %>%
                             filter(date >= xmin, date <= xmax) %>%
                             mutate(x = as.numeric(date))
