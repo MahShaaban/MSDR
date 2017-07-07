@@ -29,3 +29,23 @@ ggplot(dd, aes(date = date,
   geom_timeline() +
   geom_timeline_label() +
   theme_timeline
+
+# maps
+library(tidyverse)
+library(lubridate)
+library(leaflet)
+library(htmltools)
+
+read_tsv('data-raw/signif.txt.tsv') %>%
+  eq_clean_date %>%
+  eq_clean_location %>%
+  filter(COUNTRY == 'MEXICO' & year(date) >= 2000) %>%
+  mutate(popup_text = eq_create_label(.)) %>%
+  eq_map()
+
+leaflet(df) %>%
+  addProviderTiles(providers$CartoDB) %>%
+  addCircleMarkers(~LONGITUDE, ~LATITUDE,
+                   popup = ~popup_text,
+                   labelOptions = labelOptions(direction = 'bottom'),
+                   radius = 5)
