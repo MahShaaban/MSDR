@@ -15,3 +15,18 @@ A graph with markers for specified earthquaks and popups with info; location, ma
 \description{
 Map earthquak data to a leaflet tile
 }
+\examples{
+\dontrun{
+# load and clean data
+file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+signif <- read_tsv(file_path) \%>\%
+  eq_clean_date \%>\%
+  eq_clean_location
+
+# make graph
+signif \%>\%
+filter(COUNTRY == 'MEXICO' & year(date) >= 2000) \%>\%
+  mutate(popup_text = eq_create_label(.)) \%>\%
+  eq_map()
+}
+}

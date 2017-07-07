@@ -15,3 +15,11 @@ A data.fram with a tidy location column
 \description{
 Clean earthquak locations
 }
+\examples{
+\dontrun{
+file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+signif <- read_tsv(file_path) \%>\%
+  eq_clean_date \%>\%
+  eq_clean_location
+}
+}

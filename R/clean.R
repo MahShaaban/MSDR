@@ -3,6 +3,12 @@
 #' @param df A data.frame such as this obtainded from NOAA.
 #'
 #' @return A data.frame with a tidy date column.
+#' @examples
+#' \dontrun{
+#' file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+#' signif <- read_tsv(file_path) %>%
+#'   eq_clean_date %>%
+#' }
 #' @export
 eq_clean_date <- function(df) {
   df %>%
@@ -15,6 +21,13 @@ eq_clean_date <- function(df) {
 #' @param df A data.frame such as this obtainded from NOAA.
 #'
 #' @return A data.fram with a tidy location column
+#' @examples
+#' \dontrun{
+#' file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+#' signif <- read_tsv(file_path) %>%
+#'   eq_clean_date %>%
+#'   eq_clean_location
+#' }
 #' @export
 eq_clean_location <- function(df) {
   df %>%

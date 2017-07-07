@@ -31,3 +31,34 @@ Timeline label
 \details{
 Adds labels for the locations of individual earthquaks. Used with geom_timeline.
 }
+\examples{
+\dontrun{
+# load and clean data
+file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+signif <- read_tsv(file_path) \%>\%
+  eq_clean_date \%>\%
+  eq_clean_location
+
+# make graph
+signif \%>\%
+filter(COUNTRY == 'MEXICO') \%>\%
+  ggplot(aes(date = date,
+             xmin = as.Date('1995-01-01'),
+             xmax = as.Date('2000-12-30'),
+             y = COUNTRY,
+             colour = DEATHS,
+             fill = DEATHS,
+             size = EQ_PRIMARY,
+             location = LOCATION)) +
+  geom_timeline() +
+  geom_timeline_label() +
+  theme(axis.line.y = element_blank(),
+        axis.line.x = element_line(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        legend.position = 'bottom',
+        panel.grid = element_blank(),
+        panel.background = element_blank())
+}
+}

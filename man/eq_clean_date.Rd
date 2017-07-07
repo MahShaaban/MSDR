@@ -15,3 +15,10 @@ A data.frame with a tidy date column.
 \description{
 Clean earthquak dates
 }
+\examples{
+\dontrun{
+file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+signif <- read_tsv(file_path) \%>\%
+  eq_clean_date \%>\%
+}
+}

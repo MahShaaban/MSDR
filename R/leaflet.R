@@ -3,6 +3,20 @@
 #' @param df A data.frame such as this obtainded from NOAA.
 #'
 #' @return A column of earthquak annotation; locaion, magnitude and deaths. Ignores the fiels when NA.
+#' @examples
+#' \dontrun{
+#' # load and clean data
+#' file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+#' signif <- read_tsv(file_path) %>%
+#'   eq_clean_date %>%
+#'   eq_clean_location
+#'
+#' # make graph
+#' signif %>%
+#' filter(COUNTRY == 'MEXICO' & year(date) >= 2000) %>%
+#'   mutate(popup_text = eq_create_label(.)) %>%
+#'   eq_map()
+#' }
 #' @export
 eq_create_label <- function(df) {
   df %>%
@@ -20,6 +34,20 @@ eq_create_label <- function(df) {
 #' @param df A data.frame such as this obtainded from NOAA.
 #'
 #' @return A graph with markers for specified earthquaks and popups with info; location, magnitude and deaths.
+#' @examples
+#' \dontrun{
+#' # load and clean data
+#' file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
+#' signif <- read_tsv(file_path) %>%
+#'   eq_clean_date %>%
+#'   eq_clean_location
+#'
+#' # make graph
+#' signif %>%
+#' filter(COUNTRY == 'MEXICO' & year(date) >= 2000) %>%
+#'   mutate(popup_text = eq_create_label(.)) %>%
+#'   eq_map()
+#' }
 #' @export
 eq_map <- function(df) {
   leaflet::leaflet(df) %>%
