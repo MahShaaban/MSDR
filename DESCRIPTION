@@ -6,7 +6,7 @@ Author: Mahmoud Shaaban
 Maintainer: Mahmoud Shaaban <mahmoud.s.fahmy@students.kasralainy.edu.eg>
 Description: This package is the capstone for the mastering software development in R.
   The package is concerned with visualizing NOAA earthquak data. 
-License: GPL (>= 2)
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: knitr,
