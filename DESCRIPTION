@@ -16,6 +16,7 @@ RoxygenNote: 6.0.1
 Imports:
   ggplot2,
   dplyr,
+  readr,
   grid,
   leaflet,
   lubridate,

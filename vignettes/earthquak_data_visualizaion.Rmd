@@ -16,6 +16,7 @@ We start first by loading the libraries that are needed to run the followin code
 
 ```{r load_libraries}
 library(dplyr)
+library(readr)
 library(ggplot2)
 library(lubridate)
 library(leaflet)
