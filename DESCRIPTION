@@ -17,4 +17,6 @@ Imports:
   ggplot2,
   dplyr,
   grid,
+  leaflet,
+  lubridate,
   leaflet
