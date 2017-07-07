@@ -13,7 +13,8 @@ GeomTimelineLabel <- ggproto("GeomTimeline",
                                                 x = unit(coords$x, 'npc'),
                                                 y = unit(coords$y + .2, 'npc'),
                                                 hjust = 0,
-                                                rot = 45)
+                                                rot = 45,
+                                                gp = grid::gpar(fontsize = 8))
                           segments <- grid::segmentsGrob(x0 = unit(coords$x, 'npc'),
                                                          x1 = unit(coords$x, 'npc'),
                                                          y0 = unit(coords$y, 'npc'),
