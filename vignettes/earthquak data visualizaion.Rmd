@@ -1,3 +1,15 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
 library(tidyverse)
 library(lubridate)
 library(stringr)
@@ -49,3 +61,4 @@ leaflet(df) %>%
                    popup = ~popup_text,
                    labelOptions = labelOptions(direction = 'bottom'),
                    radius = 5)
+
