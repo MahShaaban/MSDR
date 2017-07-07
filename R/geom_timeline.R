@@ -1,8 +1,14 @@
 GeomTimeline <- ggproto("GeomTimeline",
                         Geom,
                         required_aes = c("date", "xmin", "xmax", "y", "colour", "size"),
-                        default_aes = aes(shape = 19, fill = NA, stroke = .5, alpha = .2),
-                        draw_key = draw_key_polygon,
+                        default_aes = aes(shape = 19, stroke = .5, alpha = .7),
+                        draw_key = function(data, params, size) {
+                          pointsGrob(0.5, 0.5,
+                                     pch = data$shape,
+                                     gp = gpar(fontsize = data$size * .pt + data$stroke * .stroke / 2)
+                                     )
+
+                        },
                         draw_panel = function(data, panel_scales, coord) {
                           # prepare data
                           ## subset by xmin and xmax
@@ -17,7 +23,8 @@ GeomTimeline <- ggproto("GeomTimeline",
                               coords$x, coords$y,
                               pch = coords$shape,
                               gp = grid::gpar(col = alpha(coords$colour, coords$alpha),
-                                              fill = alpha(coords$fill, coords$alpha))
+                                              fill = alpha(coords$fill, coords$alpha),
+                                              fontsize = coords$size * .pt + coords$stroke * .stroke / 2)
                             ),
                             grid::segmentsGrob(
                               x0 = unit(coords$xmin, 'npc'),

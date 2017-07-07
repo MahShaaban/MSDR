@@ -23,6 +23,7 @@ ggplot(dd, aes(date = date,
                xmax = as.Date('2005-12-05'),
                y = country,
                colour = deaths,
+               fill = deaths,
                size = scale,
                location = location)) +
   geom_timeline() +
