@@ -15,7 +15,8 @@ The following vignette is a brief discreption of the package MSDR which is a cap
 We start first by loading the libraries that are needed to run the followin codes.  
 
 ```{r load_libraries}
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(lubridate)
 library(leaflet)
 library(htmltools)
