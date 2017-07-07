@@ -42,6 +42,7 @@
 #'         panel.grid = element_blank(),
 #'         panel.background = element_blank())
 #' }
+#' @import ggplot2 dplyr grid
 #' @export
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
                           position = "identity", na.rm = FALSE, show.legend = NA,
@@ -137,6 +138,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline",
 #'         panel.grid = element_blank(),
 #'         panel.background = element_blank())
 #' }
+#' @import ggplot2 dplyr grid
 #' @export
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
                                 position = "identity", na.rm = FALSE,

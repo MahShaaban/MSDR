@@ -17,6 +17,7 @@
 #'   mutate(popup_text = eq_create_label(.)) %>%
 #'   eq_map()
 #' }
+#' @import dplyr
 #' @export
 eq_create_label <- function(df) {
   df %>%
@@ -48,6 +49,7 @@ eq_create_label <- function(df) {
 #'   mutate(popup_text = eq_create_label(.)) %>%
 #'   eq_map()
 #' }
+#' @import leaflet
 #' @export
 eq_map <- function(df) {
   leaflet::leaflet(df) %>%

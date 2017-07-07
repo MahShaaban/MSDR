@@ -3,6 +3,7 @@
 #' @param df A data.frame such as this obtainded from NOAA.
 #'
 #' @return A data.frame with a tidy date column.
+#' @import dplyr
 #' @examples
 #' \dontrun{
 #' file_path <- system.file("extdata", "signif.tsv", package = "MSDR")
@@ -28,6 +29,7 @@ eq_clean_date <- function(df) {
 #'   eq_clean_date %>%
 #'   eq_clean_location
 #' }
+#' @import dplyr
 #' @export
 eq_clean_location <- function(df) {
   df %>%
