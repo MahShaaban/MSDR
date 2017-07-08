@@ -29,7 +29,7 @@ eq_clean_date <- function(df) {
 #'   eq_clean_date %>%
 #'   eq_clean_location
 #' }
-#' @import dplyr
+#' @import dplyr stringr
 #' @export
 eq_clean_location <- function(df) {
   df %>%
