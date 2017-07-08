@@ -1,7 +1,3 @@
-library(dplyr)
-library(leaflet)
-library(lubridate)
-
 context("Test mapping tools")
 
 test_that("est eq_map gives the right object", {

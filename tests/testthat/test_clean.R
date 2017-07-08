@@ -1,8 +1,3 @@
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(proto)
-
 context("Testing cleaning functions")
 
 test_that("cleaning functions give right classes", {

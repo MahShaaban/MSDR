@@ -1,7 +1,3 @@
-library(readr)
-library(dplyr)
-library(ggplot2)
-
 context("Testing visualization tools")
 
 test_that("ploting functions gives the right objects", {
