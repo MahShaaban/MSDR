@@ -20,6 +20,5 @@ Imports:
   readr,
   stringr,
   grid,
-  leaflet,
   lubridate,
   leaflet
